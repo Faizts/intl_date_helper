@@ -1,7 +1,8 @@
 name: intl_date_helper
 description: "A simple utility for date formatting, conversion, and timezone support."
 version: 0.1.0
-homepage:
+homepage: https://github.com/Faizts/intl_date_helper
+repository: https://github.com/Faizts/intl_date_helper
 
 environment:
   sdk: ^3.6.0
