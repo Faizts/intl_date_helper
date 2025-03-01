@@ -11,3 +11,8 @@ A simple Flutter utility to format dates, convert timezones, and handle timestam
 ```yaml
 dependencies:
   intl_date_helper: ^1.0.0
+
+## Author  
+**Faiz Hassan**  
+GitHub: [@faizts](https://github.com/faizts)  
+Email: faizhassan.off@gmail.com
