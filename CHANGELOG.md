@@ -1,3 +1,4 @@
-## 0.0.1
-
-* TODO: Describe initial release.
+## 0.1.0 - Initial Release
+- Added date formatting support.
+- Added date parsing functionality.
+- Added timezone conversion.
