@@ -1,12 +1,14 @@
+import 'package:intl_date_helper/extension_date_helper.dart';
 import 'package:intl_date_helper/intl_date_helper.dart';
 
 void main() {
   // Example date string in ISO format
-  String isoDate = "2025-03-01T12:30:00Z";
+  String isoDate = "2025-03-01T12:30:00.000Z";
 
   // Formatting a date to a specific format
-  String? formattedDate = IntlDateHelper.formatDate(
-    isoDate,
+  String? formattedDate = IntlDateHelper.convertDateFormat(
+    dateString: isoDate,
+    inputFormat: "yyyy-MM-ddTHH:mm:ssZ",
     outputFormat: "yyyy-MM-dd HH:mm:ss",
   );
   print("Formatted Date: $formattedDate");
@@ -35,22 +37,30 @@ void main() {
   print("Converted Date Format: $newDateFormat");
 
   // Converting to UTC format
-  String utcDate = IntlDateHelper.toUTC(isoDate, outputFormat: "yyyy-MM-dd HH:mm:ss 'UTC'");
+  String utcDate = IntlDateHelper.toUTC(DateTime.now(),
+      outputFormat: "yyyy-MM-dd HH:mm:ss 'UTC'");
   print("UTC Date: $utcDate");
 
   // Converting to local time
-  String localDate = IntlDateHelper.toLocal(isoDate, outputFormat: "yyyy-MM-dd HH:mm:ss");
+  String localDate = IntlDateHelper.toLocal(DateTime.now(),
+      outputFormat: "yyyy-MM-dd HH:mm:ss");
   print("Local Date: $localDate");
 
   // Converting to a different timezone
   String newYorkTime = IntlDateHelper.convertTimeZone(
-    isoDate,
+    DateTime.now(),
     targetTimeZone: "America/New_York",
     outputFormat: "yyyy-MM-dd HH:mm:ss",
   );
   print("New York Time: $newYorkTime");
 
   // Getting UTC offset for a specific timezone
-  String utcOffset = IntlDateHelper.getUTCOffset(isoDate, timeZone: "America/New_York");
+  String utcOffset =
+      IntlDateHelper.getUTCOffset(DateTime.now(), timeZone: "America/New_York");
   print("UTC Offset: $utcOffset");
+
+  // Getting a relative time string
+  String relativeTime =
+      isoDate.parseDate('yyyy-MM-ddTHH:mm:ssZ')!.relativeTime();
+  print("Relative Time: $relativeTime");
 }

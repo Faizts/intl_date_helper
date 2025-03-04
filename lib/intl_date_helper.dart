@@ -1,7 +1,5 @@
 library intl_date_helper;
 
-import 'dart:developer';
-
 import 'package:intl/intl.dart';
 import 'package:intl_date_helper/utils.dart';
 import 'package:timezone/data/latest.dart' as tz;
