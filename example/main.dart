@@ -5,7 +5,7 @@ void main() {
   String isoDate = "2025-03-01T12:30:00Z";
 
   // Formatting a date to a specific format
-  String formattedDate = IntlDateHelper.formatDate(
+  String? formattedDate = IntlDateHelper.formatDate(
     isoDate,
     outputFormat: "yyyy-MM-dd HH:mm:ss",
   );

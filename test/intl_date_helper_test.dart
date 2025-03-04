@@ -4,15 +4,18 @@ import 'package:intl_date_helper/intl_date_helper.dart';
 void main() {
   group('IntlDateHelper Tests', () {
     test('Format date correctly', () {
-      DateTime date = DateTime(2025, 3, 1, 14, 30);
-      String formattedDate = IntlDateHelper.formatDate(date, outputFormat: 'yyyy-MM-dd HH:mm');
+      // DateTime date = DateTime(2025, 3, 1, 14, 30);
+      String date = '2025/03/01';
+      String? formattedDate =
+          IntlDateHelper.formatDate(date, outputFormat: 'yyyy-MM-dd HH:mm');
 
       expect(formattedDate, '2025-03-01 14:30');
     });
 
     test('Parse date from custom format', () {
       String inputDate = '01-03-2025 02:30 PM';
-      DateTime parsedDate = IntlDateHelper.parseDate(inputDate, inputFormat: 'dd-MM-yyyy hh:mm a');
+      DateTime parsedDate = IntlDateHelper.parseDate(inputDate,
+          inputFormat: 'dd-MM-yyyy hh:mm a');
 
       expect(parsedDate.year, 2025);
       expect(parsedDate.month, 3);
@@ -23,9 +26,22 @@ void main() {
 
     test('Convert timezone', () {
       DateTime utcDate = DateTime.utc(2025, 3, 1, 14, 30);
-      DateTime convertedDate = IntlDateHelper.convertToTimeZone(utcDate, 'America/New_York');
+      String convertedDate = IntlDateHelper.convertTimeZone(utcDate,
+          targetTimeZone: 'America/New_York',
+          outputFormat: 'yyyy-MM-dd HH:mm:ss');
 
-      expect(convertedDate.timeZoneName, 'EST'); // Adjust for daylight savings
+      expect(
+          convertedDate, '2025-03-01 09:30:00'); // Adjust for daylight savings
+    });
+
+    test('Convert date format', () {
+      String newDateFormat = IntlDateHelper.convertDateFormat(
+        dateString: "01/03/2025",
+        inputFormat: "MMM/dd/yyyy",
+        outputFormat: 'MMMM d, yyyy',
+      );
+
+      expect(newDateFormat, 'March 1, 2025');
     });
   });
 }
