@@ -45,4 +45,53 @@ extension RelativeTime on DateTime {
       return "$years ${years == 1 ? "year" : "years"} ago";
     }
   }
+
+  ////....... for Ranges .......////
+  /// Date Ranges (Yesterday, Today, Tomorrow, Last 7 Days, etc.)
+  /// Easy access to common date ranges for filtering data.
+  /// Example: bool isToday = IntlDateHelper.isToday(DateTime.now());
+
+  bool isToday() {
+    final date = this;
+    DateTime now = DateTime.now();
+    return date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day;
+  }
+
+  bool isYesterday() {
+    final date = this;
+    DateTime now = DateTime.now();
+    DateTime yesterday = now.subtract(Duration(days: 1));
+    return date.year == yesterday.year &&
+        date.month == yesterday.month &&
+        date.day == yesterday.day;
+  }
+
+  bool isTomorrow() {
+    final date = this;
+    DateTime now = DateTime.now();
+    DateTime tomorrow = now.add(Duration(days: 1));
+    return date.year == tomorrow.year &&
+        date.month == tomorrow.month &&
+        date.day == tomorrow.day;
+  }
+
+  bool isThisWeek() {
+    final date = this;
+    DateTime now = DateTime.now();
+    DateTime startOfWeek = DateTime(now.year, now.month, now.day - now.weekday);
+    DateTime endOfWeek =
+        DateTime(now.year, now.month, now.day + (7 - now.weekday));
+    return date.isAfter(startOfWeek) && date.isBefore(endOfWeek);
+  }
+
+  bool isLast7Days() {
+    final date = this;
+    DateTime now = DateTime.now();
+    DateTime last7Days = now.subtract(Duration(days: 7));
+    return date.isAfter(last7Days) && date.isBefore(now);
+  }
+  ////....... END .......////
+
 }

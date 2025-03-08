@@ -59,8 +59,24 @@ void main() {
       IntlDateHelper.getUTCOffset(DateTime.now(), timeZone: "America/New_York");
   print("UTC Offset: $utcOffset");
 
-  // Getting a relative time string
+
+  //// Additional Examples using Extensions ////
+  // Getting a relative time with string
   String relativeTime =
       isoDate.parseDate('yyyy-MM-ddTHH:mm:ssZ')!.relativeTime();
   print("Relative Time: $relativeTime");
+
+  /// isToday, isYesterday, isTomorrow, isLast7Days, isThisWeek
+  DateTime now = DateTime.now();
+  DateTime yesterday = now.subtract(Duration(days: 1));
+  DateTime tomorrow = now.add(Duration(days: 1));
+  DateTime last7Days = now.subtract(Duration(days: 7));
+  DateTime isThisWeek = now.add(Duration(days: 3));
+
+
+  print("Is today: ${now.isToday()}"); // true
+  print("Is yesterday: ${yesterday.isYesterday()}"); // true
+  print("Is tomorrow: ${tomorrow.isTomorrow()}"); // true
+  print("Is last7Days: ${last7Days.isLast7Days()}"); // false
+  print("Is this week: ${isThisWeek.isThisWeek()}"); // true
 }
