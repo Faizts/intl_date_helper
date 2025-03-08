@@ -59,6 +59,19 @@ void main() {
       IntlDateHelper.getUTCOffset(DateTime.now(), timeZone: "America/New_York");
   print("UTC Offset: $utcOffset");
 
+  //// Bussiness Dates ////
+  final DateTime startDate = DateTime.now();
+  final DateTime endDate = DateTime.now().add(Duration(days: 10));
+  /// Total business days between two dates
+  print("Total business days: ${IntlDateHelper.totalbusinessDaysBetweenDates(
+    startDate: startDate,
+    endDate: endDate,
+  )}");
+  /// Get List of business days between two dates
+  print("Business days list: ${IntlDateHelper.getBusinessDaysBetweenDates(
+    startDate: startDate,
+    endDate: endDate,
+  )}");
 
   //// Additional Examples using Extensions ////
   // Getting a relative time with string
@@ -72,11 +85,14 @@ void main() {
   DateTime tomorrow = now.add(Duration(days: 1));
   DateTime last7Days = now.subtract(Duration(days: 7));
   DateTime isThisWeek = now.add(Duration(days: 3));
-
+  DateTime leapYear = DateTime(2024, 2, 29);
 
   print("Is today: ${now.isToday()}"); // true
   print("Is yesterday: ${yesterday.isYesterday()}"); // true
   print("Is tomorrow: ${tomorrow.isTomorrow()}"); // true
   print("Is last7Days: ${last7Days.isLast7Days()}"); // false
   print("Is this week: ${isThisWeek.isThisWeek()}"); // true
+  print("Is leap year: ${leapYear.isLeapYear()}"); // true
+  print("startOfWeek: ${now.startOfWeek()}"); // 2025-02-24 00:00:00.000
+  print("endOfWeek: ${now.endOfWeek()}"); // 2025-03-02 23:59:59.999
 }

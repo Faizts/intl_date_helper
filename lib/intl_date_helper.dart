@@ -137,6 +137,59 @@ class IntlDateHelper {
     return tz.TZDateTime.from(date, location);
   }
 
+  /// businessDaysBetween calculates the number of business days between two dates.
+  /// [startDate] - The starting date
+  /// [endDate] - The ending date
+  /// [holidays] - Optional: List of holidays to exclude from the count
+  /// Returns: Number of business days between the two dates
+  static int totalbusinessDaysBetweenDates(
+      {required DateTime startDate,
+      required DateTime endDate,
+      List<DateTime>? holidays}) {
+    int days = endDate.difference(startDate).inDays;
+    int wholeWeeks = days ~/ 7;
+    int extraDays = days % 7;
+    int startDay = startDate.weekday;
+    int endDay = endDate.weekday;
+
+    if (startDay > endDay) {
+      extraDays += 7;
+    } else if (startDay == endDay) {
+      extraDays =
+          endDay == DateTime.saturday || endDay == DateTime.sunday ? 0 : 1;
+    }
+
+    int businessDays = wholeWeeks * 5 + extraDays;
+    if (holidays != null) {
+      businessDays -= holidays
+          .where((day) => startDate.isBefore(day) && endDate.isAfter(day))
+          .length;
+    }
+    return businessDays;
+  }
+
+  /// getBusinessDaysBetweenDates calculates the business days between two dates.
+  /// [startDate] - The starting date
+  /// [endDate] - The ending date
+  /// [holidays] - Optional: List of holidays to exclude from the count
+  /// Returns: List of business days between the two dates
+  static List<DateTime> getBusinessDaysBetweenDates(
+      {required DateTime startDate,
+      required DateTime endDate,
+      List<DateTime>? holidays}) {
+    List<DateTime> businessDays = [];
+    DateTime date = startDate;
+    while (date.isBefore(endDate)) {
+      if (date.weekday != DateTime.saturday &&
+          date.weekday != DateTime.sunday) {
+        if (holidays == null || !holidays.contains(date)) {
+          businessDays.add(date);
+        }
+      }
+      date = date.add(Duration(days: 1));
+    }
+    return businessDays;
+  }
 
   static DateTime _parseDateString(String date, [String? format]) {
     if (_isISO8601UTC(date)) return DateTime.parse(date).toUtc();

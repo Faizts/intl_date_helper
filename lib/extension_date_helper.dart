@@ -50,7 +50,6 @@ extension RelativeTime on DateTime {
   /// Date Ranges (Yesterday, Today, Tomorrow, Last 7 Days, etc.)
   /// Easy access to common date ranges for filtering data.
   /// Example: bool isToday = IntlDateHelper.isToday(DateTime.now());
-
   bool isToday() {
     final date = this;
     DateTime now = DateTime.now();
@@ -92,6 +91,21 @@ extension RelativeTime on DateTime {
     DateTime last7Days = now.subtract(Duration(days: 7));
     return date.isAfter(last7Days) && date.isBefore(now);
   }
-  ////....... END .......////
 
+  bool isLeapYear() {
+    final year = this.year;
+    return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
+  }
+
+  // get stat of the week
+  DateTime startOfWeek() {
+    final date = this;
+    return DateTime(date.year, date.month, date.day - date.weekday);
+  }
+
+  DateTime endOfWeek() {
+    final date = this;
+    return DateTime(date.year, date.month, date.day + (7 - date.weekday));
+  }
+  ////....... END .......////
 }

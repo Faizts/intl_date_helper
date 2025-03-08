@@ -4,6 +4,15 @@ A **lightweight** and **powerful** Flutter utility for **date formatting**, **ti
 
 ---
 
+## 🌟🌟 New Features 
+### 📅 Business Dates
+- **Total Business Days Calculation** – Calculate the total number of business days between two dates. 📆
+- **Business Days List** – Retrieve a list of business days between two dates. 📋
+
+### 🔄 Additional Extensions
+- **Relative Time** – Get a relative time string from a date. ⏳
+- **Date Checks** – Check if a date is today, yesterday, tomorrow, within the last 7 days, this week, or a leap year. 📅
+
 ## 🌟 Features
 ✅ **Effortless Date Formatting** – Convert **any** date format easily. 🗓️  
 ✅ **Timezone Support** – Seamlessly handle multiple time zones using the `timezone` package. 🌍  
