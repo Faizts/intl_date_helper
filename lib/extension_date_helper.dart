@@ -1,6 +1,5 @@
 import 'package:intl/intl.dart';
 
-import 'intl_date_helper.dart';
 
 extension IntlDateHelperExtension on String {
   DateTime? parseDate(String format) {
@@ -14,7 +13,7 @@ extension IntlDateHelperExtension on String {
 
   /// Relative time string (e.g., "5 minutes ago")
   String relativeTime() {
-    DateTime? date = this.parseDate('yyyy-MM-ddTHH:mm:ssZ');
+    DateTime? date = parseDate('yyyy-MM-ddTHH:mm:ssZ');
     if (date == null) {
       return "Invalid date";
     }

@@ -1,3 +1,4 @@
+// ignore: unnecessary_library_name
 library intl_date_helper;
 
 import 'package:intl/intl.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:intl_date_helper/extension_date_helper.dart';
 import 'package:intl_date_helper/intl_date_helper.dart';
 
