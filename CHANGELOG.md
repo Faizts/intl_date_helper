@@ -9,7 +9,7 @@
 - Added extensions for relative time parsing.
 - Added methods to check if a date is today, yesterday, tomorrow, within the last 7 days, this week, or a leap year.
 
-## 0.1.1+1
+## 0.1.2
 - Added extension for parsing and relative time.
 
 ## 0.1.0 - Initial Release
