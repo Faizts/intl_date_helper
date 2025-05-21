@@ -1,6 +1,6 @@
 name: intl_date_helper
 description: "A simple utility for date formatting, conversion, and timezone support."
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/Faizts/intl_date_helper
 repository: https://github.com/Faizts/intl_date_helper
 

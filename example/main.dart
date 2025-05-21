@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:intl_date_helper/extension_date_helper.dart';
+import 'package:intl_date_helper/enums/date_range_type.dart';
+import 'package:intl_date_helper/extensions/extension_date_helper.dart';
 import 'package:intl_date_helper/intl_date_helper.dart';
 
 void main() {
@@ -64,11 +65,13 @@ void main() {
   //// Bussiness Dates ////
   final DateTime startDate = DateTime.now();
   final DateTime endDate = DateTime.now().add(Duration(days: 10));
+
   /// Total business days between two dates
   print("Total business days: ${IntlDateHelper.totalbusinessDaysBetweenDates(
     startDate: startDate,
     endDate: endDate,
   )}");
+
   /// Get List of business days between two dates
   print("Business days list: ${IntlDateHelper.getBusinessDaysBetweenDates(
     startDate: startDate,
@@ -97,4 +100,12 @@ void main() {
   print("Is leap year: ${leapYear.isLeapYear()}"); // true
   print("startOfWeek: ${now.startOfWeek()}"); // 2025-02-24 00:00:00.000
   print("endOfWeek: ${now.endOfWeek()}"); // 2025-03-02 23:59:59.999
+
+  // --- Custom Date Range Checks ---
+  print("Is this month: ${now.isDateRange(DateRangeType.thisMonth)}");
+  print("Is last month: ${now.isDateRange(DateRangeType.lastMonth)}");
+  print("Is next month: ${now.isDateRange(DateRangeType.nextMonth)}");
+  print("Is this year: ${now.isDateRange(DateRangeType.thisYear)}");
+  print("Is last year: ${now.isDateRange(DateRangeType.lastYear)}");
+  print("Is next year: ${now.isDateRange(DateRangeType.nextYear)}");
 }

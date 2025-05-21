@@ -2,7 +2,7 @@
 library intl_date_helper;
 
 import 'package:intl/intl.dart';
-import 'package:intl_date_helper/utils.dart';
+import 'package:intl_date_helper/utils/utils.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 

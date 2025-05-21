@@ -1,3 +1,7 @@
+## 0.1.4
+- Added support for custom date range checks: thisMonth, lastMonth, nextMonth, thisYear, lastYear, nextYear via DateRangeType enum and DateTime extension.
+- You can now check if a date is in the current, previous, or next month/year using isDateRange(DateRangeType.type).
+
 ## 0.1.3
 - Added support for calculating total business days between two dates.
 - Added functionality to get a list of business days between two dates.
