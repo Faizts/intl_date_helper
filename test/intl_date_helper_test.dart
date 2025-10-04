@@ -4,9 +4,8 @@ import 'package:intl_date_helper/intl_date_helper.dart';
 void main() {
   group('IntlDateHelper Tests', () {
     test('Format date correctly', () {
-      // DateTime date = DateTime(2025, 3, 1, 14, 30);
-      String date = '2025/03/01';
-      String? formattedDate =
+      DateTime date = DateTime(2025, 3, 1, 14, 30);
+      String formattedDate =
           IntlDateHelper.formatDate(date, outputFormat: 'yyyy-MM-dd HH:mm');
 
       expect(formattedDate, '2025-03-01 14:30');
@@ -37,7 +36,7 @@ void main() {
     test('Convert date format', () {
       String newDateFormat = IntlDateHelper.convertDateFormat(
         dateString: "01/03/2025",
-        inputFormat: "MMM/dd/yyyy",
+        inputFormat: "dd/MM/yyyy",
         outputFormat: 'MMMM d, yyyy',
       );
 

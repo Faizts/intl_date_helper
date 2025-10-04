@@ -20,3 +20,9 @@
 - Added date formatting support.
 - Added date parsing functionality.
 - Added timezone conversion.
+
+## 0.2.0
+- Fix: Correct ISO8601 UTC detection and parsing of Z-suffixed timestamps.
+- Fix: Ensure timezone data is initialized before timezone conversions and UTC-offset queries.
+- Improvement: Cache timezone `Location` objects to reduce repeated lookups.
+- Tests: Adjusted and expanded tests to cover parsing and timezone conversion.

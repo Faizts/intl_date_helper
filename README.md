@@ -1,6 +1,6 @@
-# 📅 intl_date_helper
+# intl_date_helper
 
-A **lightweight** and **powerful** Flutter utility for **date formatting**, **timezone conversion**, and **timestamp handling**—all in one package! 🚀
+A small, focused Dart/Flutter utility for date parsing, formatting and timezone-aware conversions.
 
 ---
 
@@ -21,21 +21,18 @@ A **lightweight** and **powerful** Flutter utility for **date formatting**, **ti
 
 ---
 
-## 📦 Installation
+## Installation
 
-Add this to your `pubspec.yaml` file:
+Add this to your `pubspec.yaml` (update to the latest version on pub.dev as needed):
 
 ```yaml
 dependencies:
-  intl_date_helper: ^1.0.0
+  intl_date_helper: ^0.2.0
 ```
 
-Then, run:
+Then run:
 
-## 📖 Usage
-**Check out the README page for examples! 📚**
-
-```sh
+```bash
 flutter pub get
 ```
 

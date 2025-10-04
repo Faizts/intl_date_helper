@@ -11,6 +11,9 @@ class IntlDateHelper {
   // but initialization should only happen once! ⏳
   static bool _isInitialized = false;
 
+  // Cache for tz.Location objects to avoid repeated lookups
+  static final Map<String, tz.Location> _locationCache = {};
+
   // Initializes timezone data. Think of it as teaching our app about world timezones.
   // (Calling this multiple times is like explaining timezones to a goldfish 🐠)
   static void _initializeTimeZones() {
@@ -107,7 +110,7 @@ class IntlDateHelper {
   /// Returns: UTC offset in ±HH:mm format (because timezones love drama)
   static String getUTCOffset(dynamic date, {required String timeZone}) {
     DateTime parsedDate = _convertToDateTime(date);
-    tz.Location location = tz.getLocation(timeZone);
+    tz.Location location = _getLocation(timeZone);
     tz.TZDateTime converted = tz.TZDateTime.from(parsedDate, location);
     return _formatUTCOffset(converted.timeZoneOffset);
   }
@@ -133,8 +136,7 @@ class IntlDateHelper {
   /// [timeZone] - The destination district
   /// Returns: Date safely delivered to new timezone
   static DateTime _convertToTimeZone(DateTime date, String timeZone) {
-    _initializeTimeZones();
-    tz.Location location = tz.getLocation(timeZone);
+    tz.Location location = _getLocation(timeZone);
     return tz.TZDateTime.from(date, location);
   }
 
@@ -212,8 +214,14 @@ class IntlDateHelper {
   }
 
   static bool _isISO8601UTC(String date) {
-    return RegExp(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z\$')
+    return RegExp(r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z$')
         .hasMatch(date);
+  }
+
+  // Helper to get and cache a tz.Location; ensures timezone data is initialized
+  static tz.Location _getLocation(String timeZone) {
+    _initializeTimeZones();
+    return _locationCache.putIfAbsent(timeZone, () => tz.getLocation(timeZone));
   }
 
   static String _formatUTCOffset(Duration offset) {
